@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sample1/util/Appcolor.dart';
+
+import '../widgets/listtile.dart';
 
 class SampleView extends StatelessWidget {
   const SampleView({super.key});
@@ -82,168 +86,67 @@ class SampleView extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 0,
+            const Mylisttile(
+              title: "Onsale Now",
+              trailing: "see all",
             ),
-            ListTile(
-              title: Text(
-                "On sale now",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: AppColor.primary),
-              ),
-              trailing: Text(
-                "See all",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: AppColor.primary),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                // color: Colors.amber,
-                height: 140,
-                width: Get.size.width,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
+            Products(
+              image: Image.network(
+                  "https://images-eu.ssl-images-amazon.com/images/I/71yM0xUAetL._AC._SR360,460.jpg"),
+              price: "rs.300",
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Products extends StatelessWidget {
+  final Image image;
+  final String price;
+  const Products({
+    required this.image,
+    required this.price,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        // color: Colors.amber,
+        height: 140,
+        width: Get.size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Card(
+                elevation: 2,
+                child: SizedBox(
+                  height: Get.size.height,
+                  width: 130,
+                  child: Column(
                     children: [
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://static-01.daraz.com.bd/p/bf816ad9ef3cf8b7d891d974afed5138.jpg"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
+                      Expanded(
+                        child: Image.network(
+                            "https://static-01.daraz.com.bd/p/bf816ad9ef3cf8b7d891d974afed5138.jpg"),
                       ),
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://contents.mediadecathlon.com/p1484240/ab565f3675dbdd7e3c486175e2c16583/p1484240.jpg"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://images-eu.ssl-images-amazon.com/images/I/71yM0xUAetL._AC._SR360,460.jpg"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://static-01.daraz.com.bd/p/716ed67243203d728ab8b0d7c66eb7e1.jpg"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://cdn.pixabay.com/photo/2013/07/13/14/07/apparel-162180_960_720.png"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 2,
-                        child: SizedBox(
-                          height: Get.size.height,
-                          width: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Image.network(
-                                    "https://cdn.pixabay.com/photo/2013/07/13/14/07/apparel-162180_960_720.png"),
-                              ),
-                              Text(
-                                "Rs.700",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.primary),
-                              )
-                            ],
-                          ),
-                        ),
+                      Text(
+                        "Rs.700",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.primary),
                       ),
                     ],
                   ),
                 ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
