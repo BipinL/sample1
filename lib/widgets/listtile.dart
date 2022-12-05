@@ -14,12 +14,12 @@ class Mylisttile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        "On sale now",
+        title,
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 25, color: AppColor.primary),
       ),
       trailing: Text(
-        "See all",
+        trailing,
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 15, color: AppColor.primary),
       ),

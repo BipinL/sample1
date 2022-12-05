@@ -11,87 +11,95 @@ class SampleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            ListTile(
-              title: Text(
-                "Hello Mr.Jhon ",
-                style: TextStyle(
-                    color: AppColor.primary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(
+                  "Hello Mr.Jhon ",
+                  style: TextStyle(
+                      color: AppColor.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
+                ),
+                subtitle: const Text("Begin Your shopping"),
+                trailing: Icon(
+                  Icons.shopping_cart,
+                  color: AppColor.primary,
+                ),
               ),
-              subtitle: const Text("Begin Your shopping"),
-              trailing: Icon(
-                Icons.notification_add,
-                color: AppColor.primary,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 170,
-                  width: Get.size.width,
-                  color: AppColor.secondary,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: SizedBox(
-                            child: Expanded(
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Enjoy upto \n 40% discount",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  MaterialButton(
-                                    color: AppColor.primary,
-                                    onPressed: () {},
-                                    child: const Text(
-                                      "subscribe",
-                                      style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 170,
+                    width: Get.size.width,
+                    color: AppColor.secondary,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: SizedBox(
+                              child: Expanded(
+                                child: Column(
+                                  children: [
+                                    const Text(
+                                      "Enjoy upto \n 40% discount",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    MaterialButton(
+                                      color: AppColor.primary,
+                                      onPressed: () {},
+                                      child: const Text(
+                                        "subscribe",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: SizedBox(
-                              child: Image.network(
-                                  "https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_960_720.jpg"),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: SizedBox(
+                                child: Image.network(
+                                    "https://cdn.pixabay.com/photo/2015/09/21/14/24/supermarket-949913_960_720.jpg"),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const Mylisttile(
-              title: "Onsale Now",
-              trailing: "see all",
-            ),
+              const Mylisttile(
+                title: "Onsale Now",
+                trailing: "see all",
+              ),
 
-            //ON SALE NOW
-            Products(price: "Rs.700")
-          ],
+              //ON SALE NOW
+              const Products(price: "Rs.700"),
+
+              //LISTTILE
+              const Mylisttile(title: "500/piece", trailing: "see all"),
+
+              //500/piece
+              const Products(price: "Rs.500"),
+            ],
+          ),
         ),
       ),
     );
@@ -129,20 +137,25 @@ class Products extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView.builder(
+            scrollDirection: Axis.horizontal,
             itemCount: Images.length,
             itemBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: Get.size.height,
-                width: 130,
-                child: Column(
-                  children: [
-                    Image.network(Images[index]['image']),
-                    Text(
-                      price,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColor.primary),
-                    ),
-                  ],
+              return Card(
+                // color: AppColor.secondary,
+                child: SizedBox(
+                  height: 130,
+                  width: 130,
+                  child: Column(
+                    children: [
+                      Expanded(child: Image.network(Images[index]['image'])),
+                      Text(
+                        price,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.primary),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
