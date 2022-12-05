@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sample1/util/Appcolor.dart';
@@ -90,11 +88,9 @@ class SampleView extends StatelessWidget {
               title: "Onsale Now",
               trailing: "see all",
             ),
-            Products(
-              image: Image.network(
-                  "https://images-eu.ssl-images-amazon.com/images/I/71yM0xUAetL._AC._SR360,460.jpg"),
-              price: "rs.300",
-            )
+
+            //ON SALE NOW
+            Products(price: "Rs.700")
           ],
         ),
       ),
@@ -103,16 +99,27 @@ class SampleView extends StatelessWidget {
 }
 
 class Products extends StatelessWidget {
-  final Image image;
+  // final Image image;
   final String price;
   const Products({
-    required this.image,
+    // required this.image,
     required this.price,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List Images = [
+      {
+        "image":
+            "https://www.rei.com/media/43314827-8954-4e1e-a32b-8fd2ce0c0b99?size=576x768"
+      },
+      {
+        "image":
+            "https://www.rei.com/media/18098ed6-f674-4ecb-9a25-d1435ce074a0?size=576x768"
+      },
+      {"image": "https://www.rei.com/media/product/1409630021"}
+    ];
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -121,31 +128,24 @@ class Products extends StatelessWidget {
         width: Get.size.width,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Card(
-                elevation: 2,
-                child: SizedBox(
-                  height: Get.size.height,
-                  width: 130,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                            "https://static-01.daraz.com.bd/p/bf816ad9ef3cf8b7d891d974afed5138.jpg"),
-                      ),
-                      Text(
-                        "Rs.700",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.primary),
-                      ),
-                    ],
-                  ),
+          child: ListView.builder(
+            itemCount: Images.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: Get.size.height,
+                width: 130,
+                child: Column(
+                  children: [
+                    Image.network(Images[index]['image']),
+                    Text(
+                      price,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: AppColor.primary),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
